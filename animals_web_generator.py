@@ -1,12 +1,12 @@
 import data_fetcher
 
-def serialize_animal(fox):
+def serialize_animal(animal):
     """Serialize a single animal dict into HTML card with name, diet, location and optional type."""
     output = ""
-    name = fox["name"]
-    diet = fox["characteristics"]["diet"]
-    location = fox["locations"][0]
-    type = fox["characteristics"].get("type")
+    name = animal["name"]
+    diet = animal["characteristics"]["diet"]
+    location = animal["locations"][0]
+    type = animal["characteristics"].get("type")
     output += '<li class="cards__item">'
     output += f'<div class="card__title">{name}</div>\n'
     output += '<p class="card__text">'
@@ -26,8 +26,8 @@ with open("animals_template.html", "r") as file:
     html_page = file.read()
 
 output = ""
-for fox in animals_data:
-    output += serialize_animal(fox)
+for animal in animals_data:
+    output += serialize_animal(animal)
 
 
 new_html = html_page.replace("__REPLACE_ANIMALS_INFO__", output)
